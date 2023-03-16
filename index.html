@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>Drum Machine</title>
+    <style>
+      body {
+      background-color: #F4D7D0;
+    }
+
+    h1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #drum-machine {
+      margin: auto;
+      margin-top: 10%;
+      width: 160px;
+      padding: 25px;
+      border: 5px solid;
+      border-radius: 5px;
+      background: linear-gradient(to bottom right, #E0FFF8 25%, #40F4D0 100%);
+    }
+
+    #display {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 40px;
+      margin: 5px;
+      padding: 5px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <h1>Drum Machine</h1>
+    <div id="drum-machine">
+      <div id="display"></div>
+      <button class="drum-pad" id="heater-1" onclick="document.getElementById('Q').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" class="clip" id="Q"></audio>Q</button>
+      <button class="drum-pad" id="heater-2" onclick="document.getElementById('W').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" class="clip" id="W"></audio>W</button>
+      <button class="drum-pad" id="heater-3" onclick="document.getElementById('E').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" class="clip" id="E"></audio>E</button><br>
+      <button class="drum-pad" id="heater-4" onclick="document.getElementById('A').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" class="clip" id="A"></audio>A</button>
+      <button class="drum-pad" id="clap" onclick="document.getElementById('S').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" class="clip" id="S"></audio>S</button>
+      <button class="drum-pad" id="open-hh" onclick="document.getElementById('D').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" class="clip" id="D"></audio>D</button><br>
+      <button class="drum-pad" id="kick-n-hat" onclick="document.getElementById('Z').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" class="clip" id="Z"></audio>Z</button>
+      <button class="drum-pad" id="kick" onclick="document.getElementById('X').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" class="clip" id="X"></audio>X</button>
+      <button class="drum-pad" id="closed-hh" onclick="document.getElementById('C').play()"><audio src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" class="clip" id="C"></audio>C</button>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+        $("button").click(function(){
+          $("#display").text(this.id);
+        });
+    
+        $(document).keypress(function(e){
+          const sounds = {
+            //upper case
+            81: {id: "Q", name: "heater-1"},
+            87: {id: "W", name: "heater-2"},
+            69: {id: "E", name: "heater-3"},
+            65: {id: "A", name: "heater-4"},
+            83: {id: "S", name: "clap"},
+            68: {id: "D", name: "open-hh"},
+            90: {id: "Z", name: "kick-n-hat"},
+            88: {id: "X", name: "kick"},
+            67: {id: "C", name: "closed-hh"},
+            //lower case
+            113: {id: "Q", name: "heater-1"},
+            119: {id: "W", name: "heater-2"},
+            101: {id: "E", name: "heater-3"},
+            97: {id: "A", name: "heater-4"},
+            115: {id: "S", name: "clap"},
+            100: {id: "D", name: "open-hh"},
+            122: {id: "Z", name: "kick-n-hat"},
+            120: {id: "X", name: "kick"},
+            99: {id: "C", name: "closed-hh"}
+          };
+          
+          const sound = sounds[e.which];
+          if(sound){
+            $(`#${sound.id}`).get(0).play();
+            $("#display").text(sound.name);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
